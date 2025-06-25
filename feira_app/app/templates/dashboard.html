@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <h1>DASHBOARD</h1>
+
+            <section>
+                <a href="{{ url_for('main.minhas_feiras') }}"><button>Minhas Feiras</button></a>
+                <a href="{{ url_for('main.meus_produtos') }}"><button>Meus Produtos</button></a>
+                <a href="{{ url_for('main.meus_expositores') }}"><button>Meus Expositores</button></a>
+                <a href="{{ url_for('main.meus_ingressos') }}"><button>Meus Ingressos</button></a>
+            </section>
+
+            <a href="{{ url_for('main.home') }}"><button>Voltar</button></a>
+        </div>
+    </div>
+    
+</body>
+</html>

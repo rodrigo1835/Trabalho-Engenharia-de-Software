@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Expositores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <header><h1>MEUS EXPOSITORES</h1></header>
+
+                {% if not expositores %}
+                    <a href="/criar-expositor"><button>Criar Expositor</button></a>
+                    
+                {% else %}
+                    <a href="/criar-expositor"><button>Criar Expositor</button></a>
+                     <ul>
+                        {% for expositor in expositores %}
+                            <li style="margin-bottom: 10px;"> <strong>{{ expositor.nome }}</strong> - {{ expositor.descricao }} | Contato: {{ expositor.contato }} |</br>
+                                <a href="/expositor/{{ expositor.id }}"><button>Visualizar</button></a>
+                                <a href=""><button>Editar</button></a>
+                                <form method="POST" action="/expositores/{{ expositor.id }}/excluir" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este expositor?')">Excluir</button>
+                                </form>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+            <a href="{{ url_for('main.dashboard') }}"><button>Voltar</button></a>
+        </div>
+    </div>
+    
+</body>
+</html>

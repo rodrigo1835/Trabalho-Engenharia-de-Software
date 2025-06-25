@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>CRIAR FEIRA</h1></header>
+
+            <div id="form-centralizado">
+                <form method="POST" action="{{ url_for('main.criar_feira') }}" id = "form-centralizado">
+                    <div>
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                    </div>
+                    <div>
+                        <label>Descricao:</label>
+                        <input type="text" name="descricao" required>
+                    </div>
+                    <div>
+                        <label>Data Inicio:</label>
+                        <input type="date" name="data_inicio" required>
+                    </div>
+                    <div>
+                        <label>Data Fim:</label>
+                        <input type="date" name="data_fim" required>
+                    </div>
+                    <div>
+                        <label>Local:</label>
+                        <input type="text" name="local" required>
+                    </div>
+                    <div>
+                        <label>Cidade:</label>
+                        <input type="text" name="cidade" required>
+                    </div>
+                    <div>
+                        <label>Estado:</label>
+                        <input type="text" name="estado" required>
+                    </div>
+                    <button type="submit">Criar Feira</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

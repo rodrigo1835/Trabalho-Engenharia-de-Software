@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Expositor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>CRIAR EXPOSITOR</h1></header>
+
+            <div id="form-centralizado">
+                <form method="POST">
+                    <div>
+                        <label>Feira:</label>
+                        <select name="feira_id" required>
+                            <option value="">Selecione uma feira</option>
+                            {% for feira in feiras %}
+                                <option value="{{ feira.id }}">{{ feira.nome }} ({{ feira.cidade }}/{{ feira.estado }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                    </div>
+                    <div>
+                        <label>Descrição:</label>
+                        <input type="text" name="descricao" required>
+                    </div>
+                    <div>
+                        <label>Contato:</label>
+                        <input type="text" name="contato" required>
+                    </div>
+                    
+                    <button type="submit">Criar Expositor</button>
+                </form>
+            </div>
+            
+
+            <a href="/dashboard"><button>Voltar</button></a>
+        </div>
+    </div>
+</body>
+</html>

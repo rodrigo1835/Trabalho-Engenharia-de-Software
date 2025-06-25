@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>FAÇA LOGIN</h1></header>
+
+            <div id="form-centralizado">
+                <form method="POST" action="{{ url_for('main.login') }}" id = "form-centralizado">
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div>
+                        <label>Senha:</label>
+                        <input type="password" name="senha" required>
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+
+            <p>Não tem conta? <a href="{{ url_for('main.registro') }}">Registre-se</a></p>
+        </div>
+    </div>
+</body>
+</html>

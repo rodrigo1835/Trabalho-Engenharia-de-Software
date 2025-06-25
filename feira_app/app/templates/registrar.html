@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>CRIAR CONTA</h1></header>
+
+            <div id="form-centralizado">
+                <form method="POST" action="{{ url_for('main.registro') }}" id = "form-centralizado">
+                    <div>
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required>
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div>
+                        <label>Senha:</label>
+                        <input type="password" name="senha" required>
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+
+            <p>Já tem conta? <a href="{{ url_for('main.login') }}">Faça login</a></p>
+        </div>
+    </div>
+</body>
+</html>

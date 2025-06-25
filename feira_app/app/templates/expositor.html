@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ expositor.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <section id="info">
+                <h1>{{ expositor.nome }}</h1>
+                <p><strong>Descrição:</strong> {{ expositor.descricao }}</p>
+                <p><strong>Contato:</strong> {{ expositor.contato }}</p>
+            </section>
+
+            <section id="produtos">
+                <h2>Produtos</h2>
+
+                {% if produtos %}
+                    <ul>
+                        {% for produto in produtos %}
+                            <li>
+                                <strong>{{ produto.nome }}</strong> - R$ {{ "%.2f"|format(produto.preco) }}
+                                <br>
+                                {{ produto.descricao }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Este expositor ainda não tem produtos cadastrados.</p>
+                {% endif %}
+            </section>
+
+            <section class="acoes">
+                <a href="{{ url_for('main.listar_feira', id=feira.id) }}" class="btn"><button>Voltar</button></a>                
+            </section>
+
+        </div>
+    </div>
+    
+</body>
+</html>

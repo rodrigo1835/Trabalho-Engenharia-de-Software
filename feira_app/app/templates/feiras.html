@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Feiras</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
+    <link rel="stylesheet" href="../static/style/style.css">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>Feiras Disponíveis</h1></header>
+
+            <section id="lista_feiras">
+                <ul id="feiras_container">
+                    {% for feira in feiras %}
+                        <li><a href="/feiras/{{ feira.id }}"><button>{{ feira.nome }}</button></a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section>
+                <a href="{{ url_for('main.home') }}"><button>Voltar</button></a>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

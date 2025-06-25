@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <header><h1>MINHAS FEIRAS</h1></header>
+
+                {% if not feiras %}
+                    <a href="/criar-feira"><button>Criar Feira</button></a>
+                    
+                {% else %}
+                    <a href="/criar-feira"><button>Criar Feira</button></a>
+                     <ul>
+                        {% for feira in feiras %}
+                            <li style="margin-bottom: 10px;"> <strong>{{ feira.nome }}</strong> - {{ feira.cidade }}/{{ feira.estado }}</br>
+                                <a href="/feiras/{{ feira.id }}"><button>Visualizar</button></a>
+                                <a href=""><button>Editar</button></a>
+                                <form method="POST" action="/feiras/{{ feira.id }}/excluir" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir esta feira?')">Excluir</button>
+                                </form>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+            <a href="{{ url_for('main.home') }}"><button>Voltar</button></a>
+        </div>
+    </div>
+    
+</body>
+</html>

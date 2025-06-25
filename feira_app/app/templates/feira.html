@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ feira.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <section id="info">
+                <h1>{{ feira.nome }}</h1>
+                <p><strong>Descrição:</strong> {{ feira.descricao }}</p>
+                <p><strong>Data:</strong> {{ feira.data_inicio }} - {{ feira.data_fim }}</p>
+                <p><strong>Local:</strong> {{ feira.local }}, {{ feira.cidade }} - {{ feira.estado }}</p>
+            </section>
+
+            <section id="expositores">
+                <h2>Expositores</h2>
+                {% if expositores %}
+                    <ul>
+                        {% for expositor in expositores %}
+                            <li>
+                                <strong>{{ expositor.nome }}</strong> - {{ expositor.descricao }}<br>
+                                <strong>Contato:</strong>{{ expositor.contato }}
+                                <a href="/expositor/{{ expositor.id }}"><button>Ver expositor</button></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Não há expositores cadastrados para esta feira.</p>
+                {% endif %}
+            </section>
+
+            <section class="acoes">
+                <a href="/feiras" class="btn"><button>Voltar</button></a>
+
+                {% if session.get('usuario_id') %}
+                    <form method="POST" action="/feiras/{{ feira.id }}/adquirir-ingresso" style="display:inline;">
+                        <button type="submit">Adquirir Ingresso</button>
+                    </form>
+                {% else %}
+                    <a href="/login"><button>Adquirir Ingresso</button></a>
+                {% endif %}
+
+                
+            </section>
+
+        </div>
+    </div>
+    
+</body>
+</html>

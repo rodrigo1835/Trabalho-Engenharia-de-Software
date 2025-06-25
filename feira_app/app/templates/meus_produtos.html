@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Produtos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+
+    <div id="box">
+        <div class="conteudo">
+
+            <header><h1>MEUS PRODUTOS</h1></header>
+
+            {% if not produtos %}
+                <p>Você não tem produtos cadastrados.</p>
+                <a href="/criar-produto"><button>Criar Produto</button></a>
+            {% else %}
+                <a href="/criar-produto"><button>Criar Produto</button></a>
+                <ul>
+                    {% for produto in produtos %}
+                        <li style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                            <strong>{{ produto.nome }}</strong> R$ {{ '%.2f' | format(produto.preco) }}<br>
+                            {{ produto.descricao or 'Sem descrição' }}
+                            <div class="botos-produtos">
+                                <a href=""><button>Editar</button></a>
+                                <form method="POST" action="/produtos/{{ produto.id }}/excluir" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</button>
+                                </form>
+
+                            </div>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <a href="{{ url_for('main.dashboard') }}"><button>Voltar</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

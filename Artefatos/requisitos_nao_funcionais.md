@@ -51,3 +51,52 @@
 * O sistema não permitirá personalização visual ou funcional por parte do usuário, mas poderá exibir dados personalizados com base no login(ex: Feiras criadas pelo usuário).
 
 ## Interfaces com Sistemas Externos
+* Nenhum sistema externo será integrado ao sistema proposto.
+* O sistema não exige dispositivos específicos, sendo acessível via navegador padrão.
+
+### Interfaces de Software
+* O sistema será desenvolvido utilizando framework web padrão.
+* O banco de dados será acessado por ORM ou via SQL diretamente, com camadas separadas de lógica de negócio.
+
+### Interfaces de Hardware
+* Não há exigências específicas de hardware. O sistema será acessado de um navegador web comum.
+* Para o ambiente de desenvolvimento/teste, basta apenas um computador com acesso a red e um navegador instalado.
+
+## Regras de Negócio
+* Apenas o usuário que criou um registro (feira, expositor, produto, ingresso) poderá editá-lo ou excluí-lo.
+
+* Um registro só pode ser excluído se não houver dependências (ex: uma feira só pode ser excluída se não houver expositores nela).
+
+* Ingressos são válidos apenas para a data de emissão.
+
+* Um usuário precisa estar autenticado para cadastrar ou modificar qualquer entidade.
+
+* A listagem de feiras, expositores e produtos é pública, mas operações de modificação exigem login.
+
+### Restrições do Sistema
+* O sistema deve ser desenvolvidocom com framework voltado para web.
+
+* O banco de dados a ser utilizado será SQLite.
+
+* O sistema deve ser compatível com navegadores modernos (Chrome, Firefox, Edge).
+
+* O sistema será utilizado apenas em ambiente acadêmico, sem necessidade de publicação pública.
+
+## Conformidade do Sistema
+### Requisitos de Licenciamento
+* O sistema será de uso exclusivo acadêmico.
+
+* Não haverá necessidade de gerenciamento de licenças ou autenticação externa.
+
+### Avisos Legais e Direitos Autorais
+* Todo o conteúdo do sistema será fictício utilizado apenas para fins acadêmicos.
+
+* Não haverá integração com dados reias de usuários ou feiras existentes.
+
+### Padrões Aplicáveis
+* O projeto seguirá padrões básicos de desenvolvimento web.
+* A estrutura e documentação seguirão modelos típicos de engenharia de software, incluindo modelos de visão, casos de uso e etc.
+
+### Documentação do Sistema
+* O sistema conterá documentação mínima voltada para o usuário.
+* A documentão técnica estará disponível como parte do material do projeto, incluindo README e comentários no código.

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
+    <link rel="stylesheet" href="../static/style/style.css">
+</head>
+<body>
+
+    <div id = "box">
+        <div class="conteudo">
+            <header><h1>SISTEMA DE FEIRAS</h1></header>
+
+            <section id = "home">
+                <p>Bem vindo ao sistema de cadastramento de feiras!</p>   
+            </section>
+            
+            <section id = "botoes_home">
+                <a href="/feiras"><button>Ver Feiras </button></a>
+
+                {% if session.get('usuario_id') %}
+                    <a href="/logout"><button>Logout</button></a>
+                    <a href="/dashboard"><button>Dashboard</button></a>
+                {% else %}
+                     <a href="/login"><button>Login</button></a>
+                {% endif %}
+                
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

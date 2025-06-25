@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Ingressos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="box">
+        <div class="conteudo">
+            <header><h1>MEUS INGRESSOS</h1></header>
+
+            {% if not ingressos %}
+                <p>Você ainda não adquiriu nenhum ingresso.</p>
+                <a href="/feiras"><button>Veja as feiras disponíveis</button></a>
+            {% else %}
+                <ul>
+                    {% for ingresso in ingressos %}
+                        <li style="margin-bottom: 10px;">
+                            <strong>Número do Ingresso:</strong> {{ ingresso.numero }}<br>
+                            <strong>Feira:</strong> {{ ingresso.feira_nome }}<br>
+                            <strong>Local:</strong> {{ ingresso.feira_local }}, {{ ingresso.feira_cidade }} - {{ ingresso.feira_estado }}<br>
+                            <strong>Data:</strong> {{ ingresso.feira_data_inicio }} a {{ ingresso.feira_data_fim }}<br>
+                            <strong>Data de Emissão:</strong> {{ ingresso.data_emissao }}
+                            <form method="POST" action="/ingressos/{{ ingresso.id }}/excluir" style="display:inline;">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este ingresso?')">Excluir</button>
+                            </form>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <a href="{{ url_for('main.dashboard') }}"><button>Voltar</button></a>
+        </div>
+    </div>
+</body>
+</html>
