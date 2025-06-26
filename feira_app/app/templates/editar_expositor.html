@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Feira</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="form-centralizado">
+        <div class="conteudo">
+            <header><h1>EDITAR EXPOSITOR</h1></header>
+
+            <form method="POST">
+                <label>Feira:</label>
+                <select name="feira_id" required>
+                    {% for feira in feiras %}
+                        <option value="{{ feira.id }}" {% if feira.id == expositor.feira_id %}selected{% endif %}>
+                            {{ feira.nome }} ({{ feira.cidade }}/{{ feira.estado }})
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label>Nome:</label>
+                <input type="text" name="nome" value="{{ expositor.nome }}" required>
+
+                <label>Descrição:</label>
+                <input type="text" name="descricao" value="{{ expositor.descricao }}" required>
+
+                <label>Contato:</label>
+                <input type="text" name="contato" value="{{ expositor.contato }}" required>
+
+                <button type="submit">Salvar Alterações</button>
+            </form>
+
+            <a href="/meus-expositores"><button>Cancelar</button></a>
+        </div>
+    </div>
+  
+</body>
+</html>

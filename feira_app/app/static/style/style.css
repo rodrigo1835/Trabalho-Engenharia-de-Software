@@ -99,19 +99,19 @@ header,#home,#botoes_home {
     margin: 6px 0;
 }
 
-#expositores {
+#expositores, #produtos {
     border-radius: 12px;
     background-color: #f2f1f1;
     padding: 1em;
 }
 
-#expositores h2 {
+#expositores h2, #produtos h2 {
     font-size: 22px;
     color: #2980b9;
     margin-bottom: 12px;
 }
 
-#expositores li {
+#expositores li, #produtos li{
     margin-bottom: 10px;
     border: 1px solid #DADADA;
     border-radius: 8px;
@@ -129,7 +129,7 @@ section:last-of-type {
 }
 
 #form-centralizado form {
-  max-width: 400px;
+  max-width: 200px;
   margin: 10px auto;
   padding: 10x;
   display: flex;
@@ -147,3 +147,27 @@ section:last-of-type {
   padding: 8px 12px;
   box-sizing: border-box;
 }
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.flashes li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+

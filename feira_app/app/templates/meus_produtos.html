@@ -23,7 +23,7 @@
                             <strong>{{ produto.nome }}</strong> R$ {{ '%.2f' | format(produto.preco) }}<br>
                             {{ produto.descricao or 'Sem descrição' }}
                             <div class="botos-produtos">
-                                <a href=""><button>Editar</button></a>
+                                <a href="/produtos/{{ produto.id }}/editar"><button>Editar</button></a>
                                 <form method="POST" action="/produtos/{{ produto.id }}/excluir" style="display:inline;">
                                     <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</button>
                                 </form>

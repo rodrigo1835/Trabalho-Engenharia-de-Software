@@ -97,6 +97,34 @@ def minhas_feiras():
     
     return render_template('minhas_feiras.html', feiras=feiras)
 
+@bp.route('/feiras/<int:id>/editar', methods=['GET', 'POST'])
+def editar_feira(id):
+    if 'usuario_id' not in session:
+        flash('Você precisa estar logado.', 'error')
+        return redirect('/login')
+
+    feira = Feira.query.get_or_404(id)
+
+    if feira.criador_id != session['usuario_id']:
+        flash('Você não tem permissão para editar esta feira.', 'error')
+        return redirect('/minhas-feiras')
+
+    if request.method == 'POST':
+        dados = request.form
+        feira.nome = dados['nome']
+        feira.descricao = dados.get('descricao')
+        feira.data_inicio = datetime.strptime(dados['data_inicio'], "%Y-%m-%d").date()
+        feira.data_fim = datetime.strptime(dados['data_fim'], "%Y-%m-%d").date()
+        feira.local = dados['local']
+        feira.cidade = dados['cidade']
+        feira.estado = dados['estado']
+
+        db.session.commit()
+        flash('Feira atualizada com sucesso!', 'success')
+        return redirect('/minhas-feiras')
+
+    return render_template('editar_feira.html', feira=feira)
+
 @bp.route('/feiras/<int:id>/excluir', methods = ['POST'])
 def excluir_feira(id):
     if 'usuario_id' not in session:
@@ -145,11 +173,6 @@ def criar_expositor():
 
     return render_template('criar_expositor.html', feiras=feiras)
 
-@bp.route('/expositores/<int:feira_id>', methods=['GET'])
-def listar_expositores(feira_id):
-    expositores = Expositor.query.filter_by(feira_id=feira_id).all()
-    return jsonify([{'id': e.id, 'nome': e.nome} for e in expositores])
-
 @bp.route('/expositor/<int:id>')
 def visualizar_expositor(id):
     expositor = Expositor.query.get_or_404(id)
@@ -189,6 +212,33 @@ def excluir_expositor(id):
     flash('Expositor excluído com sucesso!', 'success')
     return redirect('/meus-expositores')
 
+@bp.route('/expositores/<int:id>/editar', methods=['GET', 'POST'])
+def editar_expositor(id):
+    if 'usuario_id' not in session:
+        flash('Você precisa estar logado.', 'error')
+        return redirect('/login')
+
+    expositor = Expositor.query.get_or_404(id)
+
+    if expositor.criador_id != session['usuario_id']:
+        flash('Você não tem permissão para editar este expositor.', 'error')
+        return redirect('/meus-expositores')
+
+    feiras = Feira.query.filter_by(criador_id=session['usuario_id']).all()
+
+    if request.method == 'POST':
+        dados = request.form
+        expositor.nome = dados['nome']
+        expositor.descricao = dados['descricao']
+        expositor.contato = dados['contato']
+        expositor.feira_id = dados['feira_id']
+
+        db.session.commit()
+        flash('Expositor atualizado com sucesso!', 'success')
+        return redirect('/meus-expositores')
+
+    return render_template('editar_expositor.html', expositor=expositor, feiras=feiras)
+
 @bp.route('/criar-produto', methods=['GET', 'POST'])
 def criar_produto():
     if 'usuario_id' not in session:
@@ -213,6 +263,33 @@ def criar_produto():
         return redirect('/meus-produtos')
 
     return render_template('criar_produto.html', expositores=expositores)
+
+@bp.route('/produtos/<int:id>/editar', methods=['GET', 'POST'])
+def editar_produto(id):
+    if 'usuario_id' not in session:
+        flash('Você precisa estar logado.', 'error')
+        return redirect('/login')
+
+    produto = Produto.query.get_or_404(id)
+
+    if produto.criador_id != session['usuario_id']:
+        flash('Você não tem permissão para editar este produto.', 'error')
+        return redirect('/meus-produtos')
+
+    expositores = Expositor.query.filter_by(criador_id=session['usuario_id']).all()
+
+    if request.method == 'POST':
+        dados = request.form
+        produto.nome = dados['nome']
+        produto.descricao = dados.get('descricao')
+        produto.preco = dados['preco']
+        produto.expositor_id = dados['expositor_id']
+
+        db.session.commit()
+        flash('Produto atualizado com sucesso!', 'success')
+        return redirect('/meus-produtos')
+
+    return render_template('editar_produto.html', produto=produto, expositores=expositores)
 
 @bp.route('/produtos/<int:id>/excluir', methods=['POST'])
 def excluir_produto(id):
@@ -311,3 +388,7 @@ def excluir_ingresso(id):
 @bp.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+@bp.route('/log')
+def log():
+    return render_template('log.html')

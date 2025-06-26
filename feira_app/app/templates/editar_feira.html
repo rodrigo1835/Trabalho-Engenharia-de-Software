@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Feira</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="form-centralizado">
+        <div class="conteudo">
+            <header><h1>EDITAR FEIRA</h1></header>
+            <form method="POST">
+                <label>Nome:</label>
+                <input type="text" name="nome" value="{{ feira.nome }}" required>
+
+                <label>Descrição:</label>
+                <input type="text" name="descricao" value="{{ feira.descricao }}">
+
+                <label>Data de Início:</label>
+                <input type="date" name="data_inicio" value="{{ feira.data_inicio }}">
+
+                <label>Data de Fim:</label>
+                <input type="date" name="data_fim" value="{{ feira.data_fim }}">
+
+                <label>Local:</label>
+                <input type="text" name="local" value="{{ feira.local }}" required>
+
+                <label>Cidade:</label>
+                <input type="text" name="cidade" value="{{ feira.cidade }}" required>
+
+                <label>Estado:</label>
+                <input type="text" name="estado" value="{{ feira.estado }}" required>
+
+                <button type="submit">Salvar Alterações</button>
+            </form>
+
+            <a href="/minhas-feiras"><button>Cancelar</button></a>
+        </div>
+    </div>
+</body>
+</html>

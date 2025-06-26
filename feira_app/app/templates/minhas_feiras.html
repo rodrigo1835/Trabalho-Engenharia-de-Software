@@ -21,7 +21,7 @@
                         {% for feira in feiras %}
                             <li style="margin-bottom: 10px;"> <strong>{{ feira.nome }}</strong> - {{ feira.cidade }}/{{ feira.estado }}</br>
                                 <a href="/feiras/{{ feira.id }}"><button>Visualizar</button></a>
-                                <a href=""><button>Editar</button></a>
+                                <a href="/feiras/{{ feira.id }}/editar"><button>Editar</button></a>
                                 <form method="POST" action="/feiras/{{ feira.id }}/excluir" style="display:inline;">
                                     <button type="submit" onclick="return confirm('Tem certeza que deseja excluir esta feira?')">Excluir</button>
                                 </form>

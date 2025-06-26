@@ -21,7 +21,7 @@
                         {% for expositor in expositores %}
                             <li style="margin-bottom: 10px;"> <strong>{{ expositor.nome }}</strong> - {{ expositor.descricao }} | Contato: {{ expositor.contato }} |</br>
                                 <a href="/expositor/{{ expositor.id }}"><button>Visualizar</button></a>
-                                <a href=""><button>Editar</button></a>
+                                <a href="/expositores/{{ expositor.id }}/editar"><button>Editar</button></a>
                                 <form method="POST" action="/expositores/{{ expositor.id }}/excluir" style="display:inline;">
                                     <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este expositor?')">Excluir</button>
                                 </form>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Feira</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div id="form-centralizado">
+        <div class="conteudo">
+            <header><h1>EDITAR PRODUTO</h1></header>
+
+            <form method="POST">
+                <label>Expositor:</label>
+                <select name="expositor_id" required>
+                    {% for expositor in expositores %}
+                        <option value="{{ expositor.id }}" {% if expositor.id == produto.expositor_id %}selected{% endif %}>
+                            {{ expositor.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label>Nome:</label>
+                <input type="text" name="nome" value="{{ produto.nome }}" required>
+
+                <label>Descrição:</label>
+                <input type="text" name="descricao" value="{{ produto.descricao }}">
+
+                <label>Preço:</label>
+                <input type="number" step="0.01" name="preco" value="{{ produto.preco }}" required>
+
+                <button type="submit">Salvar Alterações</button>
+            </form>
+
+            <a href="/meus-produtos"><button>Cancelar</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

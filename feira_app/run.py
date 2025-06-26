@@ -8,4 +8,4 @@ if __name__ == '__main__':
     server.watch('app/templates/*.html')
     server.watch('app/static/style/*.css')
     server.serve(port=5000, debug=True, open_url_delay=True)
-    print("s")
+    print("ssSSsss")
